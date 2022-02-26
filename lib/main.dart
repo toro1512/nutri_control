@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_control/provider/provider.dart';
 import 'package:nutri_control/screens/screens.dart';
 import 'package:nutri_control/services/services.dart';
 import 'package:nutri_control/share_preferences/preferences.dart';
-import 'package:nutri_control/themes/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
@@ -27,7 +27,10 @@ class AppState extends StatelessWidget {
       ]); 
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (_)=>AuthService()),
-      ChangeNotifierProvider(create: (_)=>AlimentosService())
+      ChangeNotifierProvider(create: (_)=>GeneralProvider()),
+      ChangeNotifierProvider(create: (_)=>AlimentosService()),
+      ChangeNotifierProvider(create: (_)=>ThemeProvider(isDarkmode: Preferences.isDarkmode)),
+      
     ],
     child: const MyApp(),
     );
@@ -39,11 +42,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    String  pantalla = 'home';
+    if(Preferences.primeraVez){
+        pantalla ='home';
+      }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       scaffoldMessengerKey: NotificationsService.messengerKey,
       title: 'Material App',
-      initialRoute: 'alimentos',
+      initialRoute: pantalla,
       routes: {
         'login': ( _ ) => const LoginScreen(),
         'home':( _ ) => const HomeScreen(),
@@ -54,7 +62,7 @@ class MyApp extends StatelessWidget {
         'detalleAli':( _ ) => const DetallesAlimentosScreen(),
       },
 
-      theme: AppTheme.lightTheme,
+      theme: Provider.of<ThemeProvider>(context).currentTheme,
     );
   }
 }

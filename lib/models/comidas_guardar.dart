@@ -7,12 +7,14 @@ import 'dart:convert';
 class Comidas {
     Comidas({
         required this.name,
-        required this.imagen,
+        required this.cantidad,
+        
     });
 
     String name;
-    String imagen;
+    int cantidad;
     String? id;
+    String? imagen;
 
 
     factory Comidas.fromJson(String str) => Comidas.fromMap(json.decode(str));
@@ -21,11 +23,11 @@ class Comidas {
 
     factory Comidas.fromMap(Map<String, dynamic> json) => Comidas(
         name: json["name"],
-        imagen: json["imagen"],
+        cantidad: json["cantidad"],
     );
 
     Map<String, dynamic> toMap() => {
         "name": name,
-        "imagen": imagen,
+        "cantidad": cantidad,
     };
 }

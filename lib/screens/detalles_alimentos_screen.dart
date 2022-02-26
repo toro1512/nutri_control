@@ -35,7 +35,7 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
                
-               Container(
+               SizedBox(
                  
                  width: 100,
                  child: Center(
@@ -48,7 +48,7 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
                      FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,4})?\.?\d{0,2}'))
 
                    ],))),
-               Container(
+               SizedBox(
                 
                 
                  width: 200,

@@ -9,10 +9,8 @@ import 'package:http/http.dart' as http;
 class AlimentosService extends ChangeNotifier {
 
   final String _baseUrl ='controlpeso-b1ef6-default-rtdb.firebaseio.com';
-  final List<Comidas> comidas =[];
   final List<Alimentos> alimentos=[];
-  bool isLoadingAli = true;
-  bool isLoadingCom=true;
+
   final debouncer= Debouncer(
     duration: const Duration(milliseconds: 500),
     );
@@ -20,29 +18,9 @@ class AlimentosService extends ChangeNotifier {
   Stream<List<Alimentos>> get suggestionsStream => _suggestionStreamController.stream;
   
   
-  AlimentosService(){
-
-    loadListasComi();
-
-  }
+  AlimentosService();
   
-    Future loadListasComi () async {
-
-    isLoadingCom=true;
-    notifyListeners(); 
-
-    final url= Uri.https(_baseUrl, 'comidas.json');
-    final resp = await http.get(url);
-    final Map <String, dynamic> tempMap = json.decode(resp.body);
-
-    tempMap.forEach((key, value) {
-      final tempValue= Comidas.fromMap(value);
-      tempValue.id=key;
-      comidas.add(tempValue);
-    });
-    isLoadingCom=false;
-    notifyListeners();
-  }
+   
     Future < List<Alimentos>> searchAlimentos () async {
     
    
@@ -51,7 +29,7 @@ class AlimentosService extends ChangeNotifier {
     final Map <String, dynamic> tempMap = json.decode(resp.body);
     
      alimentos.clear();
-    tempMap.forEach((key, value) {
+     tempMap.forEach((key, value) {
      
       final tempValue= Alimentos.fromMap(value);
       tempValue.id=key;
