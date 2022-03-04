@@ -1,46 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_control/provider/provider.dart';
+import 'package:provider/provider.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
 
-  final IconData iconUno, iconDos, iconTres;
-  final IconData? iconCuatro;
-  final String labelUno, labelDos, labelTres;
-  final String? labelCuatro;
-  const CustomBottomNavigation({Key? key, 
-      required this.iconUno,
-      required this.labelUno,
-      required this.iconDos,
-      required this.labelDos,
-      required this.iconTres,
-      required this.labelTres,
-       this.iconCuatro,
-       this.labelCuatro,
-      
-       }) : super(key: key);
+  
+  const CustomBottomNavigation({Key? key, }) : super(key: key);
 
   
   @override
   Widget build(BuildContext context) {
+
+    final generalProvider= Provider.of<GeneralProvider>(context);
+    final currentIndexBo =generalProvider.indexBottom;
     return BottomNavigationBar(
+      onTap: (int i)=>generalProvider.indexBottom=i,
+      currentIndex: currentIndexBo,
       type: BottomNavigationBarType.fixed,
-      items:  [
+      items: const [
         
         BottomNavigationBarItem(
-          icon: Icon(iconUno ),
-          label: labelUno
+
+          icon: Icon(Icons.home_max_outlined ),
+          label: 'Home'
+        ),
+         BottomNavigationBarItem(
+          icon: Icon( Icons.food_bank_sharp),
+          label: 'Alimentos'
         ),
         BottomNavigationBarItem(
-          icon: Icon( iconDos ),
-          label: labelDos
+          icon: Icon( Icons.bike_scooter_outlined),
+          label: 'Ejercicios'
         ),
         BottomNavigationBarItem(
-          icon: Icon( iconTres ),
-          label: labelTres
+          icon: Icon( Icons.food_bank_sharp ),
+          label: 'Estadisticas'
         ),
-        BottomNavigationBarItem(
-          icon: Icon( iconCuatro ),
-          label: labelCuatro
-        ),
+       
       ],
     );
   }

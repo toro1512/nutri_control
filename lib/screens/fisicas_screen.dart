@@ -1,14 +1,15 @@
+  
 import 'package:flutter/material.dart';
 
-class EstadisticasScreen extends StatelessWidget {
+class FisicasScreen extends StatelessWidget {
    
-  const EstadisticasScreen({Key? key}) : super(key: key);
+  const FisicasScreen({Key? key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-         child: Text('EstadisticasScreen'),
+         child: Text('FisicasScreen'),
       ),
      );
   }

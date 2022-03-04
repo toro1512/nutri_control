@@ -3,7 +3,7 @@ import 'package:nutri_control/models/models.dart';
 
 class GeneralProvider extends ChangeNotifier{
 
- final List <Comidas> _almuerosList= [];
+ List <Comidas> _almuerosList= [];
  List <Comidas> _desayunosList= [];
  List <Comidas> _cenasList= [];
  List <Comidas> _meriendasList= [];

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutri_control/provider/provider.dart';
 import 'package:nutri_control/search/search_delegate.dart';
-import 'package:nutri_control/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 
@@ -108,12 +107,7 @@ class AlimenstosScreen extends StatelessWidget {
          )
       ),
       
-      bottomNavigationBar:  const CustomBottomNavigation(
-        iconUno: Icons.home_max_outlined, labelUno: 'Home',
-        iconDos: Icons.bike_scooter_outlined, labelDos: 'Ejercicios',
-        iconTres: Icons.food_bank_sharp, labelTres: 'Estadisticas', 
-        iconCuatro: Icons.padding, labelCuatro: 'Recomendaciones', 
-        ),
+     
     );
      
   }
