@@ -31,11 +31,9 @@ class _HomeScreenBody extends StatelessWidget {
         return const PrincipalScreen();
 
       case 1: 
-         return const ComidasScreen();
-      case 2:
-         return const FisicasScreen();
-
-      case 3: 
+         return const RecomendacionesScreen();
+  
+      case 2: 
          return const EstadisticasScreen();
 
       default:

@@ -1,3 +1,4 @@
-export 'package:nutri_control/models/comidas_guardar.dart';
 export 'package:nutri_control/models/alimentos.dart';
+export 'package:nutri_control/models/search_alimentos.dart';
+export 'package:nutri_control/models/tipo.dart';
 

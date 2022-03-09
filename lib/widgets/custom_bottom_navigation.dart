@@ -25,12 +25,8 @@ class CustomBottomNavigation extends StatelessWidget {
           label: 'Home'
         ),
          BottomNavigationBarItem(
-          icon: Icon( Icons.food_bank_sharp),
-          label: 'Alimentos'
-        ),
-        BottomNavigationBarItem(
-          icon: Icon( Icons.bike_scooter_outlined),
-          label: 'Ejercicios'
+          icon: Icon( Icons.note_alt),
+          label: 'Recomendaciones'
         ),
         BottomNavigationBarItem(
           icon: Icon( Icons.food_bank_sharp ),

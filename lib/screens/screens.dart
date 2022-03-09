@@ -11,6 +11,6 @@ export 'package:nutri_control/screens/detalles_alimentos_screen.dart';
 export 'package:nutri_control/screens/principal_screen.dart';
 
 
-export 'package:nutri_control/screens/comidas_screen.dart';
+export 'package:nutri_control/screens/recomendaciones_screen.dart';
 export 'package:nutri_control/screens/fisicas_screen.dart';
 

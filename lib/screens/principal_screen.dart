@@ -38,8 +38,21 @@ class PrincipalScreen extends StatelessWidget {
                        ),
                 ),
                ),
-              PopupMenuItem(
+               PopupMenuItem(
                 value: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Row(
+                         children:const[
+                           Icon(Icons.person, color: Colors.black),
+                           SizedBox(width:8),
+                           Text('Perfil', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+                         ],
+                       ),
+                ),
+               ),
+              PopupMenuItem(
+                value: 2,
                 child: Padding(
                   padding: const EdgeInsets.all(2),
                   child: Row(
@@ -50,7 +63,8 @@ class PrincipalScreen extends StatelessWidget {
                          ],
                        ),
                 ),
-               ) 
+               ),
+                
 
             ])
         ],

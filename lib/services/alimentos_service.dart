@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:nutri_control/helpers/debouncer.dart';
 import 'package:nutri_control/models/models.dart';
@@ -8,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class AlimentosService extends ChangeNotifier {
 
-  final String _baseUrl ='controlpeso-b1ef6-default-rtdb.firebaseio.com';
+  final String _baseUrl ='control-pesonode.herokuapp.com';
   final List<Alimentos> alimentos=[];
 
   final debouncer= Debouncer(
@@ -21,22 +19,13 @@ class AlimentosService extends ChangeNotifier {
   AlimentosService();
   
    
-    Future < List<Alimentos>> searchAlimentos () async {
+    Future < List<Alimentos>> searchAlimentos (String query) async {
     
-   
-    final url= Uri.https(_baseUrl, 'productos.json');
+    final base='api/food/like/'+query;
+    final url= Uri.https(_baseUrl,base);
     final resp = await http.get(url);
-    final Map <String, dynamic> tempMap = json.decode(resp.body);
-    
-     alimentos.clear();
-     tempMap.forEach((key, value) {
-     
-      final tempValue= Alimentos.fromMap(value);
-      tempValue.id=key;
-      alimentos.add(tempValue);
-    });
-    
-      return alimentos; 
+    final searchAlimentos= SearchAlimentos.fromJson(resp.body);
+    return searchAlimentos.results; 
   }
 
   
@@ -44,7 +33,7 @@ class AlimentosService extends ChangeNotifier {
 
     debouncer.value ='';
     debouncer.onValue= (value) async {
-      final result= await searchAlimentos();
+      final result= await searchAlimentos(query);
       _suggestionStreamController.add(result);
 
     };

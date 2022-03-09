@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:nutri_control/widgets/widgets.dart';
 
-class ComidasScreen extends StatelessWidget {
+class RecomendacionesScreen extends StatelessWidget {
    
-  const ComidasScreen({Key? key}) : super(key: key);
+  const RecomendacionesScreen({Key? key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
              children: const [
-               Text('Carga tus Comidas'),
+               Text('Recomenfaciones'),
                SizedBox(height: 5),
                CardTable(),
                SizedBox(height: 5),

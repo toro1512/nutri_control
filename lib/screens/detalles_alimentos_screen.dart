@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nutri_control/models/models.dart';
+import 'package:nutri_control/provider/general_provider.dart';
+import 'package:provider/provider.dart';
 
 class DetallesAlimentosScreen extends StatefulWidget {
    
@@ -11,28 +13,91 @@ class DetallesAlimentosScreen extends StatefulWidget {
 }
 
 class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
-   String selectedValue = 'Four';
+  String selectedValue= "gr";
+  String incialText="100";
+  int indiceConversion=0;
+  int buscar=0;
+   
 
 
   @override
   Widget build(BuildContext context) {
-    
-    final Alimentos alimento = ModalRoute.of(context)!.settings.arguments as Alimentos;
-    final items = ['One', 'Two', 'Three', 'Four'];
+
+   final generalProvider=Provider.of<GeneralProvider>(context); 
+   final Alimentos alimento = ModalRoute.of(context)!.settings.arguments as Alimentos; 
+   final String  tituloS=generalProvider.tituloG;
+   List<String>  itemsS = [];
+   void llenar(List<Tipo> lis){
+        for (var name in lis) {
+          itemsS.add(name.name);
+        }
+   }
+   switch(alimento.idGroup){
+        case 0 :
+        llenar(generalProvider.tipoLiquido);
+        selectedValue = 'ml';
+        buscar=0;
+
+        break;
+        case 1 :
+        llenar(generalProvider.tipoSolido);
+        selectedValue = 'gr';
+        buscar=1;
+        break;
+        case 2 :
+        llenar(generalProvider.tipoLiquido);
+        selectedValue = 'ml';
+        buscar=0;
+        break;
+        case 3 :
+        llenar(generalProvider.tipoSolido);
+        selectedValue = 'gr';
+        buscar=1;
+        break;
+        case 4 :
+        llenar(generalProvider.tipoLiquido);
+        selectedValue = 'ml';
+        buscar=0;
+        break;
+        case 5 :
+        llenar(generalProvider.tipoLiquido);
+        selectedValue = 'ml';
+        buscar=0;
+        break;
+        case 6 :
+        llenar(generalProvider.tipoSolido);
+        selectedValue = 'gr';
+        buscar=1;
+        break;
+        case 7 :
+        llenar(generalProvider.tipoLiquido);
+        selectedValue = 'ml';
+        buscar=0;
+        break;
+        case 8 :
+        llenar(generalProvider.tipoSolido);
+        selectedValue = 'gr';
+        buscar=1;
+        break;
+        case 9 :
+        llenar(generalProvider.tipoLiquido);
+        selectedValue = 'ml';
+        buscar=0;
+        
+        break;
+      }
+   
 
      
     return  Scaffold(
-      appBar: AppBar(title: Text(alimento.name),),
+      appBar: AppBar(title: Text(tituloS),),
       body:  CuerpoBody(alimento: alimento), 
       bottomSheet:
         Container(
-           height: 60,
+           height: 70,
            padding:const  EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-           decoration: BoxDecoration(
-                
-                 borderRadius: BorderRadius.circular(10)),
            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             mainAxisAlignment: MainAxisAlignment.start,
              children: [
                
                SizedBox(
@@ -40,10 +105,12 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
                  width: 100,
                  child: Center(
                    child: TextFormField(
+                   initialValue: incialText,  
+                   keyboardType: const TextInputType.numberWithOptions(decimal: true),  
+                   onChanged: (value) {
                      
-                   autofocus: true,
-                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                   initialValue: '100',
+                   },                
+                  
                    inputFormatters: [
                      FilteringTextInputFormatter.allow(RegExp(r'^(\d{0,4})?\.?\d{0,2}'))
 
@@ -52,6 +119,7 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
                 
                 
                  width: 200,
+                 
                  child: DropdownButtonFormField<String>(
                      
                      value: selectedValue,
@@ -60,15 +128,18 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
                        borderRadius: BorderRadius.only(
                          bottomRight:Radius.circular(10) ,
                          bottomLeft: Radius.circular(10)
-                         
-                       )
+                      )
                      ), 
-                      
-                     labelText: 'Cantidad a Consumir', 
+                     labelText: 'Unidad a Consumir', 
                       
                      ),
-                     onChanged: ( newValue) =>setState(() => selectedValue = newValue!),
-                     items: items.map<DropdownMenuItem<String>>(
+                     onChanged: ( newValue){
+                         selectedValue = newValue!;
+                         indiceConversion=conseguirIndice(selectedValue,buscar);
+
+                          setState(() {});
+                     },
+                     items: itemsS.map<DropdownMenuItem<String>>(
                     (String value) => DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -82,12 +153,29 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
              ],
            ),
       ),
-
+     floatingActionButton: FloatingActionButton(
+       onPressed:()=> print('object')), 
       
       
      
     );
   }
+}
+
+int conseguirIndice(String selectedValue, int selector) {
+  switch (selector){
+    case 0:
+    
+    break;
+    case 1:
+    
+    break;
+
+
+  }
+ 
+
+  return 1;
 }
 
 
@@ -103,35 +191,88 @@ class CuerpoBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
+         crossAxisAlignment: CrossAxisAlignment.start, 
         children: <Widget>[
         Stack(
           children: [
-
-          const FadeInImage(
-           width: double.infinity,
-           height: 200,
-           placeholder:  AssetImage('assets/no-image.jpg'),
-           image: NetworkImage( 'https://via.placeholder.com/300x400.jpg'),
-           fit: BoxFit.cover,
+          Image.asset(
+            'assets/fondoDetalle.jpg',
+            height:180,
+            width:double.infinity,
+            fit: BoxFit.cover,
           ),
-          Padding(
+          Column(
+           
+            children: [
+               const SizedBox(height: 70,),
+               Center(
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black,), 
+                  child: Text(alimento.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),
+              ),
+            ],
+          )
+        ],
+        ), //Flexible
+       Container(
+                  
+                  margin: EdgeInsets.only(left: 5, right: 5, top: 5 ),
+                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black,), 
+                  child: Text('Carbohidratos en la porcion: '+alimento.carbohydrate.toString() +' gr', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),
+        Container(
+                  margin: EdgeInsets.only(left: 5, right: 5, top: 5 ),
+                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black,), 
+                  child: Text('KCalorias en la porcion: '+alimento.kcal.toString() +' gr', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),        
+         Container(
+                  margin: EdgeInsets.only(left: 5, right: 5, top: 5 ),
+                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black,), 
+                  child: Text('Grasas en la porcion: '+alimento.lipids.toString() +' gr', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),
+        Container(
+                  margin: EdgeInsets.only(left: 5, right: 5, top: 5 ),
+                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black,), 
+                  child: Text('Proteinas en la porcion: '+alimento.protein.toString() +' gr', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),        
+
+        ], //<Widget>[]
+       
+        
+        ), //Container
+      );
+  }
+}
+/*Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children:  [                      
                     const Text('Kcalorias...'),
-                    Text('${alimento.kcalo}'),
+                    Text('${alimento.kcal}'),
                     const Text('gr'),
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [                      
-                     const Text('grasas...'),
-                     Text('${alimento.grasas}'),
+                     const Text('grasas'),
+                     Text('${alimento.lipids}'),
                      const Text('gr'),
 
                   ],
@@ -142,63 +283,4 @@ class CuerpoBody extends StatelessWidget {
 
           )
           
-
-         ],
-         
-         
-        ), //Flexible
-        const SizedBox(
-          height: 20,
-        ), //SixedBox
-        Container(
-          width: 380,
-          height: 200,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.blue), //BoxDecoration
-        ), //Flexible
-        const SizedBox(
-          height: 20,
-        ), //SixedBox
-        Row(
-          children: <Widget>[
-            Flexible(
-              flex: 2,
-              fit: FlexFit.tight,
-              child: Container(
-                child:const Text('hollaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
-                width: 180,
-                height: 300,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.cyan,
-                ), //BoxDecoration
-              ), //Container
-            ), //Flexible
-            const SizedBox(
-              width: 20,
-            ), //SizedBox
-            Container(
-                child: Text(alimento.name),
-                width: 180,
-                height: 300,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.cyan,
-                  
-                ) //BoxDecoration
-                ) //Flexible
-          ], //<Widget>[]
-          mainAxisAlignment: MainAxisAlignment.center,
-        ), //Flexible
-        
-         const SizedBox(
-              width:150),        
-        ], //<Widget>[]
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        
-        ), //Container
-      );
-  }
-}
+ */

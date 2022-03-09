@@ -6,34 +6,44 @@ import 'dart:convert';
 
 class Alimentos {
     Alimentos({
-       required this.grasas,
-       required this.kcalo,
-       required this.name,
-       required this.potasio,
-       String? id
+        required this.id,
+        required this.idGroup,
+        required this.name,
+        required this.kcal,
+        required this.protein,
+        required this.carbohydrate,
+        required this.lipids,
     });
 
-    int grasas;
-    int kcalo;
+    int id;
+    int idGroup;
+    double protein;
+    double carbohydrate;
+    double lipids;
     String name;
-    int potasio;
-    String? id;
-
+    double kcal;
+    
     factory Alimentos.fromJson(String str) => Alimentos.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
 
     factory Alimentos.fromMap(Map<String, dynamic> json) => Alimentos(
-        grasas: json["grasas"],
-        kcalo: json["kcalo"],
-        name: json["name"],
-        potasio: json["potasio"],
+        id: json["ID"],
+        idGroup: json["ID_GROUP"],
+        name: json["NAME"],
+        kcal: json["KCAL"].toDouble(),
+        protein: json["PROTEIN"].toDouble(),
+        carbohydrate: json["CARBOHYDRATE"].toDouble(),
+        lipids: json["LIPIDS"].toDouble(),
     );
 
     Map<String, dynamic> toMap() => {
-        "grasas": grasas,
-        "kcalo": kcalo,
-        "name": name,
-        "potasio": potasio,
+        "ID": id,
+        "ID_GROUP": idGroup,
+        "NAME": name,
+        "PROTEIN": protein,
+        "KCAL": kcal,
+        "CARBOHYDRATE": carbohydrate,
+        "LIPIDS": lipids,
     };
 }

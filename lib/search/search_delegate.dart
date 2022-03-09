@@ -7,6 +7,13 @@ import 'package:provider/provider.dart';
 
 class AlimentosSearchDelegate extends SearchDelegate{
 
+  final String titulo;
+
+  AlimentosSearchDelegate({
+    required this.titulo
+  });
+  
+
   @override
   
   String? get searchFieldLabel => 'Buscar Alimentos';
@@ -24,7 +31,10 @@ class AlimentosSearchDelegate extends SearchDelegate{
   @override
   Widget? buildLeading(BuildContext context) {
     IconButton(
-      onPressed: ()=> close(context, null),
+      onPressed: (){
+        
+        close(context, null);
+      },
       icon: const Icon(Icons.arrow_back));
   }
 
@@ -35,7 +45,7 @@ class AlimentosSearchDelegate extends SearchDelegate{
 
   Widget _emptyContainer(){
     return const Center(
-      child: Icon(Icons.movie_creation_outlined, size: 150, color: Colors.black38),
+      child: Icon(Icons.launch_sharp, size: 150, color: Colors.black38),
     );
   }
 
@@ -68,9 +78,11 @@ class AlimentosSearchDelegate extends SearchDelegate{
 class _AlimentosSugeridos extends StatelessWidget {
 
    final Alimentos alimento;
+ 
   const _AlimentosSugeridos({
     Key? key, 
     required this.alimento,
+   
   }) : super(key: key);
 
   @override
