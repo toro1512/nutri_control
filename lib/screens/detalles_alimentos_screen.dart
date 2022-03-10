@@ -13,18 +13,25 @@ class DetallesAlimentosScreen extends StatefulWidget {
 }
 
 class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
+  final textController = TextEditingController(); 
   String selectedValue= "gr";
-  String incialText="100";
   int indiceConversion=0;
   int buscar=0;
    
-
+@override
+void initState() {
+  
+  textController.text="100";
+  super.initState();
+  
+}
 
   @override
   Widget build(BuildContext context) {
 
    final generalProvider=Provider.of<GeneralProvider>(context); 
-   final Alimentos alimento = ModalRoute.of(context)!.settings.arguments as Alimentos; 
+   final Alimentos alimento = ModalRoute.of(context)!.settings.arguments as Alimentos;
+   
    final String  tituloS=generalProvider.tituloG;
    List<String>  itemsS = [];
    void llenar(List<Tipo> lis){
@@ -32,7 +39,7 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
           itemsS.add(name.name);
         }
    }
-   switch(alimento.idGroup){
+   switch(alimento.semaforo){
         case 0 :
         llenar(generalProvider.tipoLiquido);
         selectedValue = 'ml';
@@ -94,7 +101,7 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
       body:  CuerpoBody(alimento: alimento), 
       bottomSheet:
         Container(
-           height: 70,
+           height:70,
            padding:const  EdgeInsets.symmetric(horizontal: 10, vertical: 5),
            child: Row(
              mainAxisAlignment: MainAxisAlignment.start,
@@ -105,7 +112,8 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
                  width: 100,
                  child: Center(
                    child: TextFormField(
-                   initialValue: incialText,  
+                   textAlign:TextAlign.center,
+                   controller: textController,
                    keyboardType: const TextInputType.numberWithOptions(decimal: true),  
                    onChanged: (value) {
                      
@@ -124,18 +132,13 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
                      
                      value: selectedValue,
                      decoration: const InputDecoration(
-                     border: OutlineInputBorder(
-                       borderRadius: BorderRadius.only(
-                         bottomRight:Radius.circular(10) ,
-                         bottomLeft: Radius.circular(10)
-                      )
-                     ), 
+                     border: OutlineInputBorder( gapPadding: 0,borderRadius: BorderRadius.only(bottomRight:Radius.circular(10), bottomLeft: Radius.circular(10)),), 
                      labelText: 'Unidad a Consumir', 
                       
                      ),
                      onChanged: ( newValue){
                          selectedValue = newValue!;
-                         indiceConversion=conseguirIndice(selectedValue,buscar);
+                           textController.text="5";
 
                           setState(() {});
                      },
@@ -146,36 +149,24 @@ class _DetallesAlimentosScreenState extends State<DetallesAlimentosScreen> {
                         ))
                        .toList(),
                      icon:const Icon(Icons.arrow_drop_down),
-                     iconSize: 42,
+                     iconSize: 30,
                     
                  ),
                ),
              ],
            ),
       ),
-     floatingActionButton: FloatingActionButton(
-       onPressed:()=> print('object')), 
-      
+     floatingActionButton: Align(
+          child: FloatingActionButton.extended( onPressed: () {},
+        icon: const Icon(Icons.save),
+        label: const Text("Gargar alimento"),),
+          alignment: const Alignment(0.5,0.7)),
+     
+    
       
      
     );
   }
-}
-
-int conseguirIndice(String selectedValue, int selector) {
-  switch (selector){
-    case 0:
-    
-    break;
-    case 1:
-    
-    break;
-
-
-  }
- 
-
-  return 1;
 }
 
 
@@ -207,52 +198,78 @@ class CuerpoBody extends StatelessWidget {
                const SizedBox(height: 70,),
                Center(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
                   padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
                   decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black,), 
-                  child: Text(alimento.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),
+                  child: Text(alimento.nombre, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),
               ),
             ],
           )
         ],
-        ), //Flexible
-       Container(
-                  
-                  margin: EdgeInsets.only(left: 5, right: 5, top: 5 ),
-                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
-                  decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.black,), 
-                  child: Text('Carbohidratos en la porcion: '+alimento.carbohydrate.toString() +' gr', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),
-        Container(
-                  margin: EdgeInsets.only(left: 5, right: 5, top: 5 ),
-                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
-                  decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.black,), 
-                  child: Text('KCalorias en la porcion: '+alimento.kcal.toString() +' gr', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),        
-         Container(
-                  margin: EdgeInsets.only(left: 5, right: 5, top: 5 ),
-                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
-                  decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.black,), 
-                  child: Text('Grasas en la porcion: '+alimento.lipids.toString() +' gr', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),
-        Container(
-                  margin: EdgeInsets.only(left: 5, right: 5, top: 5 ),
-                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
-                  decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.black,), 
-                  child: Text('Proteinas en la porcion: '+alimento.protein.toString() +' gr', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,)),        
-
+        ), 
+        
+        Table(
+         
+          columnWidths: {
+            0:FractionColumnWidth(0.7)
+          },
+          children: [
+            
+            TableRow(
+              children:[ 
+                _EtiquetaTabla(valorEti:'Carbohidratos en la porcion: '),
+                _EtiquetaTabla(valorEti: alimento.carbohidrato.toString()+' gr') 
+              ]
+            ),
+            TableRow(
+              children:[ 
+                _EtiquetaTabla(valorEti:'KCalorias en la porcion: '),
+                _EtiquetaTabla(valorEti: alimento.calorias.toString()+' gr') 
+              ]
+            ),
+            TableRow(
+              children:[ 
+                _EtiquetaTabla(valorEti:'Grasas en la porcion: '),
+                _EtiquetaTabla(valorEti: alimento.grasas.toString()+' gr') 
+              ]
+            ),
+            TableRow(
+              children:[ 
+                _EtiquetaTabla(valorEti:'Proteinas en la porcion: '),
+                _EtiquetaTabla(valorEti: alimento.proteina.toString()+' gr') 
+              ]
+            )
+          ],),//Flexible
+        SizedBox(height: 50),
+       
         ], //<Widget>[]
        
         
         ), //Container
       );
+  }
+}
+
+class _EtiquetaTabla extends StatelessWidget {
+  const _EtiquetaTabla({
+    Key? key,
+    required this.valorEti,
+  }) : super(key: key);
+
+  final String valorEti;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+               
+               margin: const EdgeInsets.only(left: 5, right: 5, top: 5 ),
+               padding: const EdgeInsets.symmetric(vertical: 3, horizontal:5),
+               decoration: BoxDecoration(
+               borderRadius: BorderRadius.circular(10),
+               color: Colors.black,), 
+               child: Text(valorEti , style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,));
   }
 }
 /*Padding(

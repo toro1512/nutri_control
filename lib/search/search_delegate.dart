@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutri_control/models/models.dart';
 import 'package:nutri_control/services/services.dart';
-import 'package:nutri_control/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class AlimentosSearchDelegate extends SearchDelegate{
@@ -48,6 +47,14 @@ class AlimentosSearchDelegate extends SearchDelegate{
       child: Icon(Icons.launch_sharp, size: 150, color: Colors.black38),
     );
   }
+  Widget _noRespContainer(){
+    return Column(
+      children: const [
+        SizedBox(height: 30),
+        Center(child: Text ('No Tenemos Coincidencia', style: TextStyle (color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold))),
+      ],
+    );
+  }
 
   @override
   Widget buildSuggestions(BuildContext context) {
@@ -64,6 +71,7 @@ class AlimentosSearchDelegate extends SearchDelegate{
          
         if (!snapshot.hasData) return _emptyContainer(); 
         final alimentos= snapshot.data!;
+        if(alimentos.isEmpty) return _noRespContainer(); 
         return ListView.builder(
           padding: const EdgeInsets.all(10),
           itemCount: alimentos.length,
@@ -87,14 +95,30 @@ class _AlimentosSugeridos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      Color color=Colors.white;
+     switch (alimento.semaforo) {
+       case 1:
+         color=Colors.green.shade200;
+         break;
+        case 2:
+         color=Colors.yellow.shade200;
+         break;
+         case 3:
+         color=Colors.red.shade200;
+         break;   
+      
+     }
     return  Container(
       margin: const EdgeInsets.symmetric(vertical: 2),
       child: ListTile(
-                onTap: () => Navigator.pushNamed(context, 'detalleAli', arguments: alimento),
                 contentPadding: const EdgeInsets.all(10),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                tileColor:Colors.red[300],
-                title: CustomItemAlimentos(alimento: alimento),
+                
+                tileColor:color,
+              //  title: CustomItemAlimentos(alimento: alimento),
+
+                onTap: () => Navigator.pushNamed(context, 'detalleAli', arguments: alimento),
+                
       )
     );/*Container(
             color: Colors.red,

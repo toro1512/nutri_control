@@ -37,11 +37,11 @@ class AlimentosService extends ChangeNotifier {
       _suggestionStreamController.add(result);
 
     };
-      final timer= Timer.periodic(const Duration(milliseconds: 300), (_) {
+      final timer= Timer.periodic(const Duration(milliseconds: 200), (_) {
         debouncer.value=query;
        });
     
-     Future.delayed(const Duration(milliseconds: 301)).then( (_) => timer.cancel());
+     Future.delayed(const Duration(milliseconds: 201)).then( (_) => timer.cancel());
   }
 
 

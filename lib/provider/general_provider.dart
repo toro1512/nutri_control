@@ -9,37 +9,37 @@ class GeneralProvider extends ChangeNotifier{
  List <Alimentos> meriendasLista= [];
 
  List <Alimentos> almuerosSuge= [
-  Alimentos(id:3774,idGroup:6,name:"Cerdo lomo horneado sin sal",protein:35.1,carbohydrate:0,lipids:3.2,kcal:170),
-  Alimentos(id:4714,idGroup:6,name:"Res lomo cocido sin sal ",protein:36.1,carbohydrate:0,lipids:7.9,kcal:218),
-  Alimentos(id:94,idGroup:1,name:"Arroz blanco pulido cocido sin sal ",protein:2.3,carbohydrate:30.9,lipids:2.1,kcal:161),
-  Alimentos(id:714,idGroup:1,name:"Pasta alimenticia, con huevo, sin enriquecer, coci",protein:4.5,carbohydrate:24.3,lipids:1,kcal:132),
-  Alimentos(id:1954,idGroup:2,name:"Yuca blanca sin cáscara cocida sin sal ",protein:0.7,carbohydrate:33.9,lipids:0.2,kcal:157),
-  Alimentos(id:1534,idGroup:2,name:"Papa variedad cerosa sabanera con cáscara cocida s",protein:2.3,carbohydrate:18.7,lipids:0.1,kcal:99),
+  Alimentos(id:3774,grupo:"6",nombre:"Cerdo lomo horneado sin sal",proteina:35.1,carbohidrato:0,grasas:3.2,calorias:170, semaforo: 1),
+  Alimentos(id:4714,grupo:"6",nombre:"Res lomo cocido sin sal ",proteina:36.1,carbohidrato:0,grasas:7.9,calorias:218, semaforo: 1),
+  Alimentos(id:94,grupo:"1",nombre:"Arroz blanco pulido cocido sin sal ",proteina:2.3,carbohidrato:30.9,grasas:2.1,calorias:161, semaforo: 1),
+  Alimentos(id:714,grupo:"1",nombre:"Pasta alimenticia, con huevo, sin enriquecer, coci",proteina:4.5,carbohidrato:24.3,grasas:1,calorias:132, semaforo: 1),
+  Alimentos(id:1954,grupo:"2",nombre:"Yuca blanca sin cáscara cocida sin sal ",proteina:0.7,carbohidrato:33.9,grasas:0.2,calorias:157, semaforo: 1),
+  Alimentos(id:1534,grupo:"2",nombre:"Papa variedad cerosa sabanera con cáscara cocida s",proteina:2.3,carbohidrato:18.7,grasas:0.1,calorias:99, semaforo: 1),
  ];
  List <Alimentos> desayunosSuge= [
-   Alimentos(name: "Huevo de gallina entero revuelto con sal",id:5424,idGroup: 9 , protein: 10.2, carbohydrate: 0,lipids: 11.4, kcal: 152 ),
-   Alimentos(name: "Huevo de gallina entero frito sin sal",id:5414,idGroup: 9 , protein: 17.1, carbohydrate: 0,lipids: 14.6, kcal: 208 ),
-   Alimentos(id:154,idGroup:1,name:"Cereal para el desayuno hojuelas de maíz sin azúca ",protein:8.1,carbohydrate:81.7,lipids:0.4,kcal:383),
-   Alimentos(id:604,idGroup:1,name:"Pan blanco, regular, horneado",protein:8.9,carbohydrate:45.6,lipids:3.4,kcal:268),
-   Alimentos(id:44,idGroup:1,name:"Arepa de maíz precocido con sal ",protein:3.3,carbohydrate:34.1,lipids:0.9,kcal:163),
-   Alimentos(id:74,idGroup:1,name:"Arepa de maíz con queso asada",protein:4.8,carbohydrate:0,lipids:8.4,kcal:211),
-   Alimentos(id:84,idGroup:1,name:"Arepa de maíz frita ",protein:3.4,carbohydrate:0,lipids:20.3,kcal:325)
+   Alimentos(nombre: "Huevo de gallina entero revuelto con sal",id:5424,grupo:" 9" , proteina: 10.2, carbohidrato: 0,grasas: 11.4, calorias: 152, semaforo: 1 ),
+   Alimentos(nombre: "Huevo de gallina entero frito sin sal",id:5414,grupo: "9" , proteina: 17.1, carbohidrato: 0,grasas: 14.6, calorias: 208, semaforo: 1 ),
+   Alimentos(id:154,grupo:"1",nombre:"Cereal para el desayuno hojuelas de maíz sin azúca ",proteina:8.1,carbohidrato:81.7,grasas:0.4,calorias:383, semaforo: 1),
+   Alimentos(id:604,grupo:"1",nombre:"Pan blanco, regular, horneado",proteina:8.9,carbohidrato:45.6,grasas:3.4,calorias:268, semaforo: 1),
+   Alimentos(id:44,grupo:"1",nombre:"Arepa de maíz precocido con sal ",proteina:3.3,carbohidrato:34.1,grasas:0.9,calorias:163, semaforo: 1),
+   Alimentos(id:74,grupo:"1",nombre:"Arepa de maíz con queso asada",proteina:4.8,carbohidrato:0,grasas:8.4,calorias:211, semaforo: 1),
+   Alimentos(id:84,grupo:"1",nombre:"Arepa de maíz frita ",proteina:3.4,carbohidrato:0,grasas:20.3,calorias:325, semaforo: 1)
  ];
  List <Alimentos> cenasSuge= [
-  Alimentos(id:84,idGroup:1,name:"Arepa de maíz frita ",protein:3.4,carbohydrate:0,lipids:20.3,kcal:325),
-  Alimentos(id:44,idGroup:1,name:"Arepa de maíz precocido con sal ",protein:3.3,carbohydrate:34.1,lipids:0.9,kcal:163),
-  Alimentos(id:5044,idGroup:8,name:"Queso fresco blando magro tipo suero costeño",protein:11,carbohydrate:0,lipids:1.5,kcal:83),
-  Alimentos(id:5074,idGroup:8,name:"Queso fresco semiduro semigraso tipo costeño",protein:17.5,carbohydrate:0,lipids:25.5,kcal:303),
-  Alimentos(id:6064,idGroup:14,name:"Yogurt bebible descremado sin azucar",protein:3.7,carbohydrate:7.9,lipids:0.3,kcal:49),
-  Alimentos(id:4084,idGroup:6,name:"Jamon de cerdo y res tipo sanduche precocido",protein:11.4,carbohydrate:0,lipids:15.5,kcal:215),
+  Alimentos(id:84,grupo:"1",nombre:"Arepa de maíz frita ",proteina:3.4,carbohidrato:0,grasas:20.3,calorias:325, semaforo: 1),
+  Alimentos(id:44,grupo:"1",nombre:"Arepa de maíz precocido con sal ",proteina:3.3,carbohidrato:34.1,grasas:0.9,calorias:163, semaforo: 1),
+  Alimentos(id:5044,grupo:"8",nombre:"Queso fresco blando magro tipo suero costeño",proteina:11,carbohidrato:0,grasas:1.5,calorias:83, semaforo: 1),
+  Alimentos(id:5074,grupo:"8",nombre:"Queso fresco semiduro semigraso tipo costeño",proteina:17.5,carbohidrato:0,grasas:25.5,calorias:303, semaforo: 1),
+  Alimentos(id:6064,grupo:"14",nombre:"Yogurt bebible descremado sin azucar",proteina:3.7,carbohidrato:7.9,grasas:0.3,calorias:49, semaforo: 1),
+  Alimentos(id:4084,grupo:"6",nombre:"Jamon de cerdo y res tipo sanduche precocido",proteina:11.4,carbohidrato:0,grasas:15.5,calorias:215, semaforo: 1),
  ];
  List <Alimentos> meriendasSuge= [
-  Alimentos(id:164, idGroup:1, name:"croissant de queso horneado", protein:9.2, carbohydrate:46.3, lipids:23, kcal:445),
-  Alimentos(id:654,idGroup:1,name:"Pan de queso, horneado",protein:10.4,carbohydrate:31.4,lipids:20.8,kcal:367),
-  Alimentos(id:5874,idGroup:11,name:"Café soluble descafeinado en polvo",protein:11.6,carbohydrate:80.7,lipids:0.2,kcal:371),
-  Alimentos(id:204,idGroup:1,name:"Galletas dulces con relleno",protein:3.8,carbohydrate:68.6,lipids:24.1,kcal:516),
-  Alimentos(id:224,idGroup:1,name:"Galletas dulces de avena con uvas pasas",protein:6.5,carbohydrate:66.1,lipids:16.2,kcal:451),
-  Alimentos(id:6074,idGroup:14,name:"Yogurt bebible semidescremado con azucar",protein:4,carbohydrate:17.8,lipids:1.1,kcal:99),
+  Alimentos(id:164, grupo:"1", nombre:"croissant de queso horneado", proteina:9.2, carbohidrato:46.3, grasas:23, calorias:445, semaforo: 1),
+  Alimentos(id:654,grupo:"1",nombre:"Pan de queso, horneado",proteina:10.4,carbohidrato:31.4,grasas:20.8,calorias:367, semaforo: 1),
+  Alimentos(id:5874,grupo:"11",nombre:"Café soluble descafeinado en polvo",proteina:11.6,carbohidrato:80.7,grasas:0.2,calorias:371, semaforo: 1),
+  Alimentos(id:204,grupo:"1",nombre:"Galletas dulces con relleno",proteina:3.8,carbohidrato:68.6,grasas:24.1,calorias:516, semaforo: 1),
+  Alimentos(id:224,grupo:"1",nombre:"Galletas dulces de avena con uvas pasas",proteina:6.5,carbohidrato:66.1,grasas:16.2,calorias:451, semaforo: 1),
+  Alimentos(id:6074,grupo:"14",nombre:"Yogurt bebible semidescremado con azucar",proteina:4,carbohidrato:17.8,grasas:1.1,calorias:99, semaforo: 1),
  ];
  List<Tipo> tipoSolido=[
    Tipo(name: "gr", vInicial: 100, vConversion: 1),
@@ -86,6 +86,27 @@ class GeneralProvider extends ChangeNotifier{
  }
  void notiCambios(){
   notifyListeners();
+ }
+ void borrarAlimento(int index, bool redibujar){
+   switch (_tituloG) {
+    case 'Almuerzo':
+        almuerosLista.removeAt(index);
+        break;
+      case 'Cena': 
+         cenasLista.removeAt(index);
+        break;
+      case 'Desayuno': 
+         desayunosLista.removeAt(index);
+        break;
+      case 'Meriendas': 
+         meriendasLista.removeAt(index);  
+        break;
+   }
+
+
+  if(redibujar) {
+    notifyListeners();
+  }
  }
 
 }

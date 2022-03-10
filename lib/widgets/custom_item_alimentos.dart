@@ -27,9 +27,9 @@ class CustomItemAlimentos extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               
-              Text(alimento.name, style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold ) ,),
+              Text(alimento.nombre, style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold ) ,),
               const SizedBox(height: 10,),
-              Text('Kcal:${alimento.kcal} grasas:${alimento.lipids} Kcal:${alimento.kcal} grasas:${alimento.protein} potasio:${alimento.lipids}', maxLines: 2,overflow: TextOverflow.ellipsis,style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.normal )),
+              Text('Kcal:${alimento.calorias} grasas:${alimento.grasas} Kcal:${alimento.grasas} grasas:${alimento.carbohidrato} potasio:${alimento.grasas}', maxLines: 2,overflow: TextOverflow.ellipsis,style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.normal )),
            
             ],
           ),
